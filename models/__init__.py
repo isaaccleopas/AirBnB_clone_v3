@@ -3,7 +3,6 @@
 initialize the models package
 """
 
-from models.base_model import BaseModel
 from os import getenv
 
 
