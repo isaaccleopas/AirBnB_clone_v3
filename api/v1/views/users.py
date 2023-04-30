@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-This module handles all default RestFul API actions for Users
+This module handles all default RestFul API actions for Users.
 """
 from flask import abort, jsonify, request
 from api.v1.views import app_views
@@ -11,7 +11,7 @@ from models.user import User
 @app_views.route('/users', methods=['GET'],
                  strict_slashes=False)
 def get_all_users():
-    """Retrieves the list of all User objects"""
+    """ Retrieves the list of all User objects. """
     users = storage.all(User).values()
     users_list = []
     for user in users:
@@ -22,7 +22,7 @@ def get_all_users():
 @app_views.route('/users/<user_id>', methods=['GET'],
                  strict_slashes=False)
 def get_user(user_id):
-    """Retrieves a User object"""
+    """ Retrieves a User object. """
     user = storage.get(User, user_id)
     if user is None:
         abort(404)
@@ -32,7 +32,7 @@ def get_user(user_id):
 @app_views.route('/users/<user_id>', methods=['DELETE'],
                  strict_slashes=False)
 def delete_user(user_id):
-    """Deletes a User object"""
+    """ Deletes a User object. """
     user = storage.get(User, user_id)
     if user is None:
         abort(404)
@@ -44,7 +44,7 @@ def delete_user(user_id):
 @app_views.route('/users', methods=['POST'],
                  strict_slashes=False)
 def create_user():
-    """Creates a User"""
+    """ Creates a User. """
     if not request.get_json():
         abort(400, description="Not a JSON")
     if 'email' not in request.get_json():
@@ -59,7 +59,7 @@ def create_user():
 @app_views.route('/users/<user_id>', methods=['PUT'],
                  strict_slashes=False)
 def update_user(user_id):
-    """Updates a User object"""
+    """ Updates a User object. """
     ignore_keys = ['id', 'email', 'created_at', 'updated_at']
     user = storage.get(User, user_id)
     if user is None:
