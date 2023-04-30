@@ -2,11 +2,10 @@
 """
 This module handles all default RestFul API actions for Users
 """
-
-from flask import Flask, jsonify, abort, request
+from flask import abort, jsonify, request
+from api.v1.views import app_views
 from models import storage
 from models.user import User
-from api.v1.views import app_views
 
 
 @app_views.route('/users', methods=['GET'],
