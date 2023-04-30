@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Create a new view for Review objects that handles default RESTful API
+New view for Review objects that handles default RESTful API
 """
 from api.v1.views import app_views
 from flask import jsonify, abort, request
