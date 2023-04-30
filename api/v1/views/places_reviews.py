@@ -3,7 +3,7 @@
 New view for Review objects that handles default RESTful API
 """
 from api.v1.views import app_views
-from flask import jsonify, abort, request
+from flask import abort, jsonify, request
 from models import storage
 from models.place import Place
 from models.review import Review
