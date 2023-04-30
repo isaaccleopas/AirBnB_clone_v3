@@ -2,11 +2,19 @@
 """
 Defines the RESTful API actions for the Place object.
 """
-
-from flask import jsonify, abort, request
-from models import storage
-from models.place import Place
+from flask import abort, jsonify, request
+import requests
 from api.v1.views import app_views
+from api.v1.views.amenities import amenities
+from api.v1.views.places_amenities import place_amenities
+from models import storage
+from models.amenity import Amenity
+from models.city import City
+from models.place import Place
+from models.state import State
+from models.user import User
+import json
+from os import getenv
 
 
 @app_views.route('/cities/<city_id>/places', methods=['GET'])
