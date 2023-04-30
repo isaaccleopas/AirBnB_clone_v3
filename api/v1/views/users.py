@@ -4,7 +4,8 @@ This module handles all default RestFul API actions for Users
 """
 
 from flask import Flask, jsonify, abort, request
-from models import storage, User
+from models import storage
+from models.user import User
 from api.v1.views import app_views
 
 
