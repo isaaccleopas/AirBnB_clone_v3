@@ -11,25 +11,24 @@ from models.amenity import Amenity
 @app_views.route('/amenities', methods=['GET'])
 def get_amenities():
     """Retrieves the list of all Amenity objects"""
-    amenities = [amenity.to_dict()
-    for amenity in storage.all(Amenity).values()]
+    amenities = [amenity.to_dict() for amenity in storage.all(Amenity).values()]
     return jsonify(amenities)
 
 
 @app_views.route('/amenities/<amenity_id>', methods=['GET'])
 def get_amenity(amenity_id):
-    """Retrieves a Amenity object"""
+    """Retrieves an Amenity object"""
     amenity = storage.get(Amenity, amenity_id)
-    if not amenity:
+    if amenity is None:
         abort(404)
     return jsonify(amenity.to_dict())
 
 
 @app_views.route('/amenities/<amenity_id>', methods=['DELETE'])
 def delete_amenity(amenity_id):
-    """Deletes a Amenity object"""
+    """Deletes an Amenity object"""
     amenity = storage.get(Amenity, amenity_id)
-    if not amenity:
+    if amenity is None:
         abort(404)
     amenity.delete()
     storage.save()
@@ -38,9 +37,9 @@ def delete_amenity(amenity_id):
 
 @app_views.route('/amenities', methods=['POST'])
 def create_amenity():
-    """Creates a Amenity"""
+    """Creates an Amenity"""
     data = request.get_json()
-    if not data:
+    if data is None:
         abort(400, "Not a JSON")
     if 'name' not in data:
         abort(400, "Missing name")
@@ -51,15 +50,15 @@ def create_amenity():
 
 @app_views.route('/amenities/<amenity_id>', methods=['PUT'])
 def update_amenity(amenity_id):
-    """Updates a Amenity object"""
+    """Updates an Amenity object"""
     amenity = storage.get(Amenity, amenity_id)
-    if not amenity:
+    if amenity is None:
         abort(404)
     data = request.get_json()
-    if not data:
+    if data is None:
         abort(400, "Not a JSON")
     for key, value in data.items():
         if key not in ['id', 'created_at', 'updated_at']:
             setattr(amenity, key, value)
     amenity.save()
-    return jsonify(amenity.to_dict()), 200)
+    return jsonify(amenity.to_dict()), 200
