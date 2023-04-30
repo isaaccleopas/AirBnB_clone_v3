@@ -79,8 +79,7 @@ class DBStorage:
         """
         Returns the object based on the class name and its ID
         """
-        print(classes)
-        objects = self.__session.query(classes[cls])
+        objects = self.__session.query(classes[cls.__name__])
         for obj in objects:
             if obj.id == id:
                 return obj
