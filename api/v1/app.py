@@ -14,8 +14,7 @@ app_host = os.getenv('HBNB_API_HOST', '0.0.0.0')
 app_port = int(os.getenv('HBNB_API_PORT', '5000'))
 app.url_map.strict_slashes = False
 app.register_blueprint(app_views)
-cors = CORS(app, resources={r"/api/v1/*": {"origins": "0.0.0.0"}})
-
+CORS(app, resources={'/*': {'origins': app_host}})
 
 def teardown_flask(exception):
     """The Flask app/request context end event listener"""
