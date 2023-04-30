@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-New view for State objects that handles default RESTful API actions
+View for State objects that handles default RESTful API actions
 """
 from flask import jsonify, abort, request
 from models import storage
