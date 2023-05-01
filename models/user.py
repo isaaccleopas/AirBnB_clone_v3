@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 """ holds class User"""
-import hashlib
 import models
 from models.base_model import BaseModel, Base
 from os import getenv
 import sqlalchemy
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
+import hashlib
 
 
 class User(BaseModel, Base):
@@ -30,9 +30,4 @@ class User(BaseModel, Base):
         super().__init__(*args, **kwargs)
         if "password" in kwargs:
             self.password = hashlib.md5(kwargs["password"].encode()).hexdigest()
-        else:
-            self.password = ""
-    
-    def update_password(self, password):
-        """Updates the password attribute and hashes it to MD5"""
-        self.password = hashlib.md5(password.encode()).hexdigest()
+        super().__init__(*args, **kwargs)

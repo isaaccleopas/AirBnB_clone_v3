@@ -2,7 +2,6 @@
 """
 Contains the class DBStorage
 """
-import hashlib
 import models
 from models.amenity import Amenity
 from models.base_model import BaseModel, Base
@@ -53,8 +52,6 @@ class DBStorage:
 
     def new(self, obj):
         """add the object to the current database session"""
-        if isinstance(obj, User):
-            obj.password = hashlib.md5(obj.password.encode()).hexdigest()
         self.__session.add(obj)
 
     def save(self):

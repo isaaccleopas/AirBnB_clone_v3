@@ -2,7 +2,6 @@
 """
 Contains the FileStorage class
 """
-import hashlib
 import json
 from models.amenity import Amenity
 from models.base_model import BaseModel
@@ -36,8 +35,6 @@ class FileStorage:
 
     def new(self, obj):
         """sets in __objects the obj with key <obj class name>.id"""
-        if isinstance(obj, User):
-            obj.password = hashlib.md5(obj.password.encode()).hexdigest()
         if obj is not None:
             key = obj.__class__.__name__ + "." + obj.id
             self.__objects[key] = obj
