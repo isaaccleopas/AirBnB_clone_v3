@@ -2,7 +2,6 @@
 """
 Defines the RESTful API actions for the Place object.
 """
-
 from flask import jsonify, abort, request
 from models import storage
 from models.place import Place
